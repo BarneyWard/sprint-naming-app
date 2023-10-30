@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "sprint-naming-app",
+    "slug": "sprint-naming-app",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "sprint-naming-app"
+}
