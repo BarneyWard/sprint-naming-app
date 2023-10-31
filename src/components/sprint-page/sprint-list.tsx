@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, Pressable } from 'react-native';
 import { colourBlue, colourYellow } from '../../constants';
+import { Button } from '../shared-components/button';
 
 type sprintListProps = {
     data: any,
-};
+    deleteFunction: (name: string) => void,
+}
 
 export const SprintList = (props: sprintListProps) => {
     const currentTime = new Date();
@@ -22,9 +24,7 @@ export const SprintList = (props: sprintListProps) => {
                         <Text style={styles.sprintListItemCurrent}>{(item.startDate <= currentTime && item.endDate >= currentTime) ? 'Current' : ''}</Text>
                     </View>
                     <Text>{item.startDate.toDateString() + ' - ' + item.endDate.toDateString()}</Text>
-                    <Pressable style={styles.deleteButton} onPress={() =>{}}>
-                        <Text style={styles.deleteButtonText}>{'Delete'}</Text>
-                    </Pressable>
+                    <Button label='Delete' style={styles.deleteButton} onClick={ () => props.deleteFunction(item.name) } type='primary'></Button>
                 </View>
                 );
             }}
@@ -54,19 +54,9 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     deleteButton: {
-        backgroundColor: colourYellow,
-        height: 40,
-        width: 80,
-        borderRadius: 10,
         position:'absolute',
         right: 15,
         bottom: 15,
         alignSelf:'flex-end'
     },
-    deleteButtonText: {
-        color: colourBlue,
-        fontSize: 15,
-        paddingTop: 10,
-        paddingLeft: 17,
-    }
   });

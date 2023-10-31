@@ -1,71 +1,25 @@
-import React from 'react';
-import { StyleSheet, Text, View, FlatList, Pressable } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { SprintList } from './sprint-list';
-import { colourBlue, colourYellow } from '../../constants';
 import { Button } from '../shared-components/button';
-
-const sprints = [
-    {
-        name: "Sprint 8",
-        startDate: new Date('2023-10-01T0:00:00'),
-        endDate: new Date('2023-10-31T0:00:00'),
-    },
-    {
-name: "Sprint 7",
-startDate: new Date('2023-01-01T0:00:00'),
-endDate: new Date('2023-01-30T0:00:00'),
-},
-{
-name: "Sprint 6",
-startDate: new Date('2023-01-01T0:00:00'),
-endDate: new Date('2023-01-30T0:00:00'),
-},
-{
-name: "Sprint 5",
-startDate: new Date('2023-01-01T0:00:00'),
-endDate: new Date('2023-01-30T0:00:00'),
-},
-{
-name: "Sprint 4",
-startDate: new Date('2023-01-01T0:00:00'),
-endDate: new Date('2023-01-30T0:00:00'),
-},
-{
-name: "Sprint 3",
-startDate: new Date('2023-01-01T0:00:00'),
-endDate: new Date('2023-01-30T0:00:00'),
-},
-{
-name: "Sprint 2",
-startDate: new Date('2023-01-01T0:00:00'),
-endDate: new Date('2023-01-30T0:00:00'),
-},
-{
-name: "Sprint 1",
-startDate: new Date('2023-01-01T0:00:00'),
-endDate: new Date('2023-01-30T0:00:00'),
-},
-{
-name: "Sprint 0",
-startDate: new Date('2023-01-01T0:00:00'),
-endDate: new Date('2023-01-30T0:00:00'),
-}
-];
+import { getSprintData } from '../../services/sprintData';
 
 export const SprintPage = () => {
-  
+    const [sprints, setSprints] = useState(getSprintData);
+
+    const deleteSprint = (sprintName: string) => {
+        console.log(sprintName);
+        setSprints(sprints.filter((a) => a.name !== sprintName));
+    };
+
     return (
         <View style={styles.sprintPage}>
-            <SprintList data={sprints}></SprintList>
+            <SprintList data={sprints} deleteFunction={deleteSprint}></SprintList>
             
-            <Button label='+' style={styles.addButton} function={() => {}}></Button>
+            <Button label='+' style={styles.addButton} onClick={() => {}} type='circular'></Button>
         </View>
     );
 };
-
-/*<Pressable style={styles.addButton} onPress={() =>{}}>
-                <Text style={styles.addButtonText}>{'+'}</Text>
-            </Pressable>*/
 
 const styles = StyleSheet.create({
     sprintPage: {
@@ -73,10 +27,6 @@ const styles = StyleSheet.create({
         flex: 1
       },
     addButton: {
-        /*backgroundColor: colourBlue,
-        height: 50,
-        width: 50,
-        borderRadius: 50,*/
         position:'absolute',
         right: 15,
         bottom: 15,

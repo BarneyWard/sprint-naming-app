@@ -5,43 +5,40 @@ import { colourBlue, colourYellow } from '../../constants';
 type buttonProps = {
     label: string,
     style: any,
-    function: any,
+    onClick: any,
+    type: string,
 }
 
 export const Button = (props: buttonProps) => {
 
     return (
-        <Pressable style={[styles.button, props.style]} onPress={props.function}>
-            <Text style={styles.buttonText}>{props.label}</Text>
+        <Pressable style={[(props.type === 'circular') ? styles.circularButton : styles.mainButton, props.style]} onPress={props.onClick}>
+            <Text style={(props.type === 'circular') ? styles.circularButtonText : styles.mainButtonText}>{props.label}</Text>
         </Pressable>
     );
 };
 
 const styles = StyleSheet.create({
-    button: {
+    circularButton: {
         backgroundColor: colourBlue,
         height: 50,
         width: 50,
         borderRadius: 50,
     },
-    buttonText: {
+    circularButtonText: {
         color: colourYellow,
         fontSize: 30,
         fontWeight: 'bold',
         paddingTop: 5,
         paddingLeft: 15,
     },
-    deleteButton: {
+    mainButton: {
         backgroundColor: colourYellow,
         height: 40,
         width: 80,
         borderRadius: 10,
-        position:'absolute',
-        right: 15,
-        bottom: 15,
-        alignSelf:'flex-end'
     },
-    deleteButtonText: {
+    mainButtonText: {
         color: colourBlue,
         fontSize: 15,
         paddingTop: 10,
