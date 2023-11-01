@@ -8,6 +8,8 @@ type sprintListProps = {
     deleteFunction: (name: string) => void,
 }
 
+//<Text>{item.startDate.toDateString() + ' - ' + item.endDate.toDateString()}</Text>
+
 export const SprintList = (props: sprintListProps) => {
     const currentTime = new Date();
 
@@ -23,7 +25,7 @@ export const SprintList = (props: sprintListProps) => {
                         <Text style={styles.sprintListItemTitle}>{item.name}</Text>
                         <Text style={styles.sprintListItemCurrent}>{(item.startDate <= currentTime && item.endDate >= currentTime) ? 'Current' : ''}</Text>
                     </View>
-                    <Text>{item.startDate.toDateString() + ' - ' + item.endDate.toDateString()}</Text>
+                    <Text>{item.startDate + ' - ' + item.endDate}</Text>
                     <Button label='Delete' style={styles.deleteButton} onClick={ () => props.deleteFunction(item.name) } type='primary'></Button>
                 </View>
                 );

@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { SprintList } from './sprint-list';
 import { Button } from '../shared-components/button';
-import { getSprintData } from '../../services/sprintData';
+import { UseSprints } from '../../hooks/use-sprints';
+import { Sprint } from '../../types';
 
 export const SprintPage = () => {
-    const [sprints, setSprints] = useState(getSprintData);
+    const [sprintPageList, setSprintPageList] = useState<Sprint[]>([]);
+    const { getSprints, setSprints } = UseSprints();
+
+    useEffect(() => {
+        const sprints = getSprints();
+        setSprintPageList(sprints);
+    },[]);
 
     const deleteSprint = (sprintName: string) => {
-        console.log(sprintName);
-        setSprints(sprints.filter((a) => a.name !== sprintName));
+        setSprintPageList(sprintPageList.filter((a) => a.name !== sprintName));
+        setSprints(sprintPageList);
     };
 
     return (
         <View style={styles.sprintPage}>
-            <SprintList data={sprints} deleteFunction={deleteSprint}></SprintList>
-            
+            <SprintList data={sprintPageList} deleteFunction={deleteSprint}></SprintList>
+
             <Button label='+' style={styles.addButton} onClick={() => {}} type='circular'></Button>
         </View>
     );

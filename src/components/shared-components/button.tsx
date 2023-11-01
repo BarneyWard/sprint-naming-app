@@ -4,7 +4,7 @@ import { colourBlue, colourYellow } from '../../constants';
 
 type buttonProps = {
     label: string,
-    style: any,
+    style?: any,
     onClick: any,
     type: string,
 }

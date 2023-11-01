@@ -1,4 +1,4 @@
-package com.sprintnamingapp;
+package com.anonymous.sprintnamingapp;
 
 import android.os.Build;
 import android.os.Bundle;

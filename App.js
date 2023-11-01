@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Header } from './src/components/header';
 import { SprintPage } from './src/components/sprint-page/sprint-page';
+import { AddSprintPage } from "./src/components/add-sprint-page";
 
 export default function App() {
   return (

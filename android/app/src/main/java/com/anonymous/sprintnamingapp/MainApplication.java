@@ -1,4 +1,4 @@
-package com.sprintnamingapp;
+package com.anonymous.sprintnamingapp;
 
 import android.app.Application;
 import android.content.res.Configuration;
